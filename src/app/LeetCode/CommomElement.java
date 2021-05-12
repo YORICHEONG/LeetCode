@@ -26,39 +26,27 @@ public class CommomElement {
      * @return
      */
     public int[] intersect_01(int[] nums1, int[] nums2) {
-        if(nums1==null||nums2==null||nums1.length==0||nums2.length==0){
-            return null;
-        }
-        boolean flag = nums1.length<nums2.length?true:false;
-        int length = nums1.length<nums2.length?nums1.length:nums2.length;
-        Set<Integer> set1 = new HashSet<>();
-        Set<Integer> set2 = new HashSet<>();
-        int[] firstArray;
-        int[] lastArray;
-        List<Integer> result = new ArrayList<Integer>();
-        if(true){
-            firstArray = nums1;
-            lastArray = nums2;
-        }else{
-            firstArray = nums2;
-            lastArray = nums1;
-        }
-        for(int i = 0; i<length; i++){
-            set1.add(firstArray[i]);
-        }
-        for(int i =0; i<lastArray.length; i++){
-            set2.add(lastArray[i]);
-        }
-        for(Integer number:set2){
-            if(!set1.add(number)){
-                result.add(number);
+        //首先对两个数组进行排序
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        int i = 0;
+        int j = 0;
+        List<Integer> list = new ArrayList<Integer>();
+        while(i<nums1.length && j<nums2.length){
+            if(nums1[i]<nums2[j]){
+                i++;
+            }else if(nums1[i]>nums2[j]){
+                j++;
+            }else{
+                list.add(nums1[i]);
+                i++;
+                j++;
             }
         }
-        int[] result1 = new int[result.size()];
-        System.out.println(result.size());
-        for(int i = 0; i<result.size(); i++){
-            result1[i] = result.get(i);
+        int[] result = new int[list.size()];
+        for(int k = 0; k<list.size(); k++){
+            result[k] = list.get(k);
         }
-        return result1;
+        return result;
     }
 }
