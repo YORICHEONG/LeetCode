@@ -29,5 +29,20 @@ public class MoveZeroArray {
             nums[index++] = 0;
         }
     }
+    /**
+     * 使用两个指针来进行一个遍历，然后替换
+     * @param nums
+     */
+    public void moveZeroes_2(int[] nums){
+        int i = 0;
+        for(int j = 0; j<nums.length; j++){
+            if(nums[j]!=0){
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+                i++;
+            }
+        }
+    }
 
 }
