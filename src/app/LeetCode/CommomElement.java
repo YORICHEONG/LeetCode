@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.omg.CORBA.FREE_MEM;
 
 /**
  * 给定两个数组，编写一个函数来计算它们的交集。
