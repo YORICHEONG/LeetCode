@@ -1,16 +1,4 @@
-<<<<<<< HEAD
-package app.LeetCode;
 
-/**
- * 
- */
-public class TwoSum {
-    public int[] twoSum(int[] nums, int target) {
-        
-        return null;
-    }
-}
-=======
 package app.LeetCode.Base;
 import java.util.Arrays;
 import java.util.HashMap;
