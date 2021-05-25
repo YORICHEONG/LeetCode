@@ -1,4 +1,4 @@
-package app.LeetCode;
+package app.LeetCode.Base;
 /**
  * 字符串中的一个唯一字符
  */
