@@ -34,6 +34,7 @@ public class SetZeroes {
                 }
             }
         }
+        System.out.println("Test");
         //然后根据第一行列是否为空来设置为空
         if(columnHasZero){
             for(int i = 0; i<matrix.length; i++){
