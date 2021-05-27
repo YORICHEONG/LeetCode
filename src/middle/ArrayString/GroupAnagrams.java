@@ -1,8 +1,8 @@
-public Middle.ArrayString;
+package Middle.ArrayString;
 
 import java.util.*;
 
-class GroupAnagrams {
+public class GroupAnagrams {
     public List<List<String>> groupAnagrams(String[] strs) {
     	Map<String,List<String>> map = new HashMap<String,List<String>>();
 
@@ -15,18 +15,19 @@ class GroupAnagrams {
     		StringBuffer sb = new StringBuffer();
     		for(int i = 0; i<26;i++){
     			if(counts[i]!=0){
-    				sb.append((char)('a'-counts[i]));
+    				sb.append((char)('a'+counts[i]));
     			}
     		}
     		String key = sb.toString();
     		List<String> list = new ArrayList<String>();
-    		if(map.contain(key)){
-    			list.add(context);
-    		}else{
+    		if(map.containsKey(key)){
     			list = map.get(key);
+				list.add(context);
+    		}else{
     			list.add(context);
     		}
     		map.put(key,list);
     	}
     	return new ArrayList<List<String>>(map.values());
     }
+}
