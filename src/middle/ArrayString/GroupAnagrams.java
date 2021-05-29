@@ -19,12 +19,10 @@ public class GroupAnagrams {
     			}
     		}
     		String key = sb.toString();
-    		List<String> list = new ArrayList<String>();
     		if(map.containsKey(key)){
-    			list = map.get(key);
-				list.add(context);
+    			map.get(key).add(context);
     		}else{
-    			list.add(context);
+    			map.put(key,new ArrayList<String>(context));
     		}
     		map.put(key,list);
     	}
