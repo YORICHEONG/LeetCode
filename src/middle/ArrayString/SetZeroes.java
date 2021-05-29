@@ -1,4 +1,4 @@
-package Middle.ArrayString;
+package middle.ArrayString;
 
 public class SetZeroes {
     public void setZeroes(int[][] matrix) {
