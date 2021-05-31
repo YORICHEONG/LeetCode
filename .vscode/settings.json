@@ -1,4 +1,35 @@
 {
-    "editor.fontSize": 16,
-    "terminal.integrated.fontFamily": "Menlo for Powerline",
+    "workbench.settings.editor": "ui",
+
+    // 文本编辑器
+    "editor.suggestSelection": "first",
+    "editor.renderControlCharacters": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.snippetSuggestions": "top",
+    "editor.renderWhitespace": "all",
+    "editor.formatOnPaste": true,
+    "editor.wordWrap": "on",
+    "editor.fontSize": 17,
+    "editor.tabSize": 2,
+    "editor.fontWeight": "bold",
+    "editor.codeActionsOnSave": {
+        // For ESLint
+        "source.fixAll.eslint": true,
+        // For TSLint
+        "source.fixAll.tslint": true,
+        // For Stylelint
+        "source.fixAll.stylelint": true
+    },
+    "diffEditor.ignoreTrimWhitespace": true,
+
+    // 窗口
+    "window.zoomLevel": 0,
+
+    // 文件资源管理
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    // 终端
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.rendererType": "dom",
+    "terminal.integrated.cursorStyle": "line",
 }
