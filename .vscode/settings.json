@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "workbench.settings.editor": "ui",
 
     // 文本编辑器
@@ -32,4 +33,10 @@
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.rendererType": "dom",
     "terminal.integrated.cursorStyle": "line",
+=======
+    "editor.fontSize": 17,
+    "terminal.integrated.fontFamily": "Menlo for Powerline",
+    "editor.fontLigatures": null,
+    "editor.fontWeight": "bold"
+>>>>>>> 2dc60bea13f667aad61aaac8e26b9c1aa163eb79
 }

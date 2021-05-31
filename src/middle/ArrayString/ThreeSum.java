@@ -1,4 +1,4 @@
-package Middle.ArrayString;
+package middle.ArrayString;
 import java.util.*;
 
 public class ThreeSum {
