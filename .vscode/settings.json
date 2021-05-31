@@ -1,42 +1,46 @@
 {
-<<<<<<< HEAD
-    "workbench.settings.editor": "ui",
-
-    // 文本编辑器
-    "editor.suggestSelection": "first",
-    "editor.renderControlCharacters": true,
-    "editor.multiCursorModifier": "ctrlCmd",
-    "editor.snippetSuggestions": "top",
-    "editor.renderWhitespace": "all",
-    "editor.formatOnPaste": true,
-    "editor.wordWrap": "on",
-    "editor.fontSize": 17,
-    "editor.tabSize": 2,
-    "editor.fontWeight": "bold",
-    "editor.codeActionsOnSave": {
-        // For ESLint
-        "source.fixAll.eslint": true,
-        // For TSLint
-        "source.fixAll.tslint": true,
-        // For Stylelint
-        "source.fixAll.stylelint": true
+    "editor.fontFamily": "Operator Mono",
+    "editor.fontLigatures": true, // 这个控制是否启用字体连字，true启用，false不启用，这里选择启用
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "name": "italic font",
+                "scope": [
+                    "comment",
+                    "keyword",
+                    "storage",
+                    "keyword.control.import",
+                    "keyword.control.default",
+                    "keyword.control.from",
+                    "keyword.operator.new",
+                    "keyword.control.export",
+                    "keyword.control.flow",
+                    "storage.type.class",
+                    "storage.type.function",
+                    "storage.type",
+                    "storage.type.class",
+                    "variable.language",
+                    "variable.language.super",
+                    "variable.language.this",
+                    "meta.class",
+                    "meta.var.expr",
+                    "constant.language.null",
+                    "support.type.primitive",
+                    "entity.name.method.js",
+                    "entity.other.attribute-name",
+                    "punctuation.definition.comment",
+                    "text.html.basic entity.other.attribute-name.html",
+                    "text.html.basic entity.other.attribute-name",
+                    "tag.decorator.js entity.name.tag.js",
+                    "tag.decorator.js punctuation.definition.tag.js",
+                    "source.js constant.other.object.key.js string.unquoted.label.js",
+                ],
+                "settings": {
+                    "fontStyle": "italic",
+                    "fontSize":18
+                }
+            },
+        ]
     },
-    "diffEditor.ignoreTrimWhitespace": true,
-
-    // 窗口
-    "window.zoomLevel": 0,
-
-    // 文件资源管理
-    "explorer.confirmDragAndDrop": false,
-    "explorer.confirmDelete": false,
-    // 终端
-    "terminal.integrated.cursorBlinking": true,
-    "terminal.integrated.rendererType": "dom",
-    "terminal.integrated.cursorStyle": "line",
-=======
-    "editor.fontSize": 17,
-    "terminal.integrated.fontFamily": "Menlo for Powerline",
-    "editor.fontLigatures": null,
-    "editor.fontWeight": "bold"
->>>>>>> 2dc60bea13f667aad61aaac8e26b9c1aa163eb79
+    "editor.fontSize": 17
 }
