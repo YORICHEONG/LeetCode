@@ -3,9 +3,9 @@ import java.util.*;
 
 public class LetterCombinations {
   public List<String> letterCombinations(String digits) {
-    list<String> combination = new ArrayList<String>();
+    List<String> combinations = new ArrayList<String>();
     if(digits.length() == 0){
-      return combination;
+      return combinations;
     }
     Map<Character,String> map = new HashMap<>();
 
@@ -18,8 +18,8 @@ public class LetterCombinations {
     map.put('8', "tuv");
     map.put('9', "wxyz");
 
-
-
+    backTrace(combinations, map, digits, 0, new StringBuffer());
+    return combinations;
   }
   public void backTrace(List<String> combinations,Map<Character,String> map,String digits,int index,StringBuffer combination){
     if(index==digits.length()){
