@@ -30,7 +30,7 @@ public class Exist {
     } 
     private boolean dfs(char[][] board,int i,int j,String word,int index,boolean[][] isTrue){
         //首先进行数组下标的越界的判断，二维数组当前的位置的值是否是符合当前index的word
-        if(i<0||j<0||i>=width||j<=length||board[i][j]!=word.charAt(index)||isTrue[i][j]){
+        if(i<0||j<0||i>=width||j>=length||board[i][j]!=word.charAt(index)||isTrue[i][j]){
             return false;
         }else if(index+1 == wordLength){
             return true;
