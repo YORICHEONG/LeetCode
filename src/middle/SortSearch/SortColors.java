@@ -10,10 +10,27 @@ public class SortColors {
         //应为给定的数组中的值只有三种值 0，1，2
         int left = 0;
         int right = nums.length-1;
-        for(int i = 0; i<nums.length; i++){
+        for(int i = 0; i<=right; i++){
             if(nums[i]==0){
-                
+            	//如果找打一个0，就将这个0和最左边位置的数来进行一个交换
+                swap(i,left,nums);
+                left++;
             }
+            if(nums[i]==2){
+            	//如果找到的是2就将当前下标的值与最右边的进行一个交换
+            	swap(i,right,nums);
+            	right--;
+            	i--;
+            }
+
         }    
+    }
+    /**
+    数组中进行交换
+    **/
+    private void swap(int i, int j, int[] array){
+    	int temp = array[i];
+    	array[i] = array[j];
+    	array[j] = temp;
     }
 }
