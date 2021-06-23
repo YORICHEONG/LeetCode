@@ -1,30 +1,45 @@
 package middle.SortSearch;
+import java.rmi.server.RemoteRef;
 import java.util.*;
+
+import javafx.beans.property.MapProperty;
 
 public class TopKFrequent{
 	public int[] topKFrequent(int[] nums, int k) {
-		//首先创建一个基于map的数字和次数出现对应表
-		List<Integer> result = new ArrayList<Integer>();
-		Map<Integer,Integer> countMap = new HashMap();
+		HashMap<Integer,Integer> hashMap = new HashMap();
 		for(int num:nums){
-			if(countMap.containsKey(num)){
-				countMap.put(num,countMap.get(num)+1);
+			if(hashMap.containsKey(num)){
+				hashMap.put(num, hashMap.get(num)+1);
+			}
+			hashMap.put(num,1);
+		}
+		
+		PriorityQueue<int[]> priorityQueue = new PriorityQueue<>(new Comparator<int[]>(){
+			
+			@Override
+			public int compare(int[] a,int[] b){
+				return a[1]-b[1];
+			}
+		});
+
+		for(Map.Entry<Integer,Integer> entry:hashMap.entrySet()){
+			int num = entry.getKey();
+			int value = entry.getValue();
+			if(priorityQueue.size()==k){
+				//从堆中取出一个数据来进行比较大小
+				if(priorityQueue.peek()[1]<value){
+					priorityQueue.poll();
+					priorityQueue.offer(new int[]{num,value});
+				}
 			}else{
-				countMap.put(num,1);
+				priorityQueue.offer(new int[]{num,value});
 			}
 		}
-		//然后进行桶排序
-		int[] array = new int[nums.length+1];
-		for(int key:map.keySet()){
-			// 获取出现的次数作为下标
-            int i = map.get(key);
-           	array[i] = key;
+
+		int[] result = new int[k];
+		for (int i = 0; i < result.length; i++) {
+			result[i] = priorityQueue.poll()[0];
 		}
-		for(int i = array.length()-1&&result.size()<k; i>=0; i++){
-			if(list[i]==0){
-				continue;
-			}
-			result.addAll(array[i]);
-		}
+		return result;
     }
 }
