@@ -52,8 +52,6 @@ public class openLock_20210625 {
         return -1;
     }
 
-
-
     private char numPrev(char x) {
         return x == '0' ? '9':(char)(x-1);
     }
@@ -73,7 +71,7 @@ public class openLock_20210625 {
             result.add(new String(array));
             array[i] = num;
         }
-        
+
         return result;
     }
 }
