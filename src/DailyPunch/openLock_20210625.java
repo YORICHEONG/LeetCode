@@ -1,8 +1,8 @@
 package DailyPunch;
 import java.util.*;
 /**
- * Author:YORICHEONG
- * 2021-06-25 09:24:12
+ * @authro YORICHEONG
+ * @date 2021-06-25 09:24:12
  * description:You have a lock in front of you with 4 circular wheels. 
  * Each wheel has 10 slots: '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'. 
  * The wheels can rotate freely and wrap around: for example we can turn '9' to be '0', or '0' to be '9'. Each move consists of turning one wheel one slot.
@@ -17,7 +17,7 @@ public class openLock_20210625 {
         if("0000".equals(target)) {
             return 0;
         }
-
+        
         Set<String> dead = new HashSet<>();
         for(String s:deadends) {
             dead.add(s);
