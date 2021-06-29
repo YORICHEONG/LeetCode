@@ -18,7 +18,6 @@ class Solution {
 		// index=0 value in the leftValue array is 1 because the for the first value it didn't hava left value
 		leftValue[0] = 1;
 
-		// 
 		for(int i = 1; i<length; i++) {
 			leftValue[i] = nums[i-1] * leftValue[i-1];
 		} 
