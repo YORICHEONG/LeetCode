@@ -30,6 +30,13 @@ public class MaxArea {
         return maxArea;
     }
 
+    /**
+     * 
+     * @param height
+     * @param start
+     * @param end
+     * @return
+     */
     private int getArea(int[] height, int start, int end) {
         return Math.min(height[start],height[end]) * (end-start);
     }
