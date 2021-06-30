@@ -1,6 +1,7 @@
 package dailypunch;
 import middle.tree.TreeNode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,16 +12,31 @@ import java.util.List;
  */
 public class codec_20210630 {
 
-    // Encodes a tree to a single string.
+    private final String none = "None";
+    
+    /**
+     * @description: 
+     * @param: [middle.tree.TreeNode] [root] 
+     * @return: java.lang.String
+     * @author YORICHEONG
+     * @date: 2021/6/30 10:18
+     */
     public String serialize(TreeNode root) {
         return reserialize(root,"");
     }
-
-    // Decodes your encoded data to tree.
+    
+    /**
+     * @description:
+     * @param: [java.lang.String] [data] 
+     * @return: middle.tree.TreeNode
+     * @author YORICHEONG
+     * @date: 2021/6/30 10:18
+     */
     public TreeNode deserialize(String data) {
         String[] dataArray = data.split(",");
         List<String> dataList = Arrays.asList(dataArray);
-        return redeserialize(dataList);
+        List<String> list = new ArrayList<>(dataList);
+        return redeserialize(list);
     }
     
     /**
@@ -32,7 +48,7 @@ public class codec_20210630 {
      */
     private String reserialize(TreeNode root,String str) {
         if(root == null) {
-            str += "None,";
+            str += none+",";
         } else {
             str += String.valueOf(root.val)+",";
             str = reserialize(root.left, str);
@@ -50,7 +66,7 @@ public class codec_20210630 {
      * @date: 2021/6/30 9:49
      */
     private TreeNode redeserialize(List<String> list) {
-        if("None".equals(list.get(0))) {
+        if(none.equals(list.get(0))) {
             list.remove(0);
             return null;
         }
