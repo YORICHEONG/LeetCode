@@ -34,7 +34,7 @@ public class FindDuplicate {
      * @param: [int[]] [nums] 
      * @return: int
      * @author YORICHEONG
-     * @date: 2021/6/30 15:28
+     * @date: 2021/7/1 9:22
      */
     public int findDuplicate02(int[] nums) {
         int slow = 0;
