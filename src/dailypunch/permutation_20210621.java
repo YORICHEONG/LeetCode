@@ -37,7 +37,7 @@ public class permutation_20210621 {
     }
     /**
      * 
-     * @param s
+     * @param
      * @param left
      * @param right
      */
