@@ -96,7 +96,7 @@ public class maxIceCream_20210702 {
      * @param: [int[], int] [costs, coins] 
      * @return: int
      * @author YORICHEONG
-     * @date: 2021/7/2 10:49
+     * @date: 2021/7/2 11:28
      */
     public int maxIceCream02(int[] costs, int coins) {
         // 冰淇淋价格数组的长度
