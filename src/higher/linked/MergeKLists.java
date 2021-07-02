@@ -4,7 +4,6 @@ package higher.linked;/**
  * @create 2021-07-02 11:22
  */
 
-import com.sun.deploy.util.LinkMouseListener;
 import middle.list.ListNode;
 
 import java.util.Comparator;
