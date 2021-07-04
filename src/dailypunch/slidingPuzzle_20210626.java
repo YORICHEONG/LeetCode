@@ -1,8 +1,5 @@
 package dailypunch;
-/**
- * @author YORICHEONG
- * @date 2021-06-28 09:53:18
- */
+
 import java.util.*;
 
 class SlidingPuzzle {
