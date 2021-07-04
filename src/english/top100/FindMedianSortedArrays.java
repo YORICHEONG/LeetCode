@@ -62,9 +62,6 @@ public class FindMedianSortedArrays {
             int i = (iMin + iMax) / 2;
             int j = (l + s) / 2 - i;
 
-            if (i < l && longArray[j - 1] > shortArray[i]) {
-
-            }
         }
         return 0;
     }
