@@ -4,7 +4,6 @@ package higher.linked;/**
  * @create 2021-07-05 17:22
  */
 
-import com.sun.org.apache.xerces.internal.xni.parser.XMLErrorHandler;
 import middle.list.ListNode;
 
 import java.util.LinkedList;
