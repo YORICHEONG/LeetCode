@@ -18,7 +18,7 @@ public class MaxPathSum {
         int leftGain = Math.max(maxGain(node.left),0);
         int rightGain = Math.max(maxGain(node.right),0);
 
-        int pathSum = leftGain+rightGain+node.val;
+        int pathSum = leftGain + rightGain+node.val;
 
         maxSum = Math.max(maxSum, pathSum);
 
