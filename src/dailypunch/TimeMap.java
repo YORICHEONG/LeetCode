@@ -1,7 +1,8 @@
 package dailypunch;
 
-java.util.*;
-public class timemap_20210710 {
+import java.util.*;
+
+public class TimeMap {
     /** Initialize your data structure here. */
     HashMap<String, TreeMap<Integer, String>> map;
 
