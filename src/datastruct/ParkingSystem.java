@@ -42,4 +42,37 @@ class ParkingSystem2{
             cnt += cur == 1 ? 1 << i : 0;
         }
     }
+
+    public boolean addCar(int ct) {
+        int cur = countOfType(ct);
+        if(cur > 0) {
+            setCount(ct,cur-1);
+            return true;
+        }
+        return false;
+    }
+
+    public int countOfType(int cnt) {
+        int ans = 0;
+        int start = --cnt * 10;
+        int end = start + 10;
+        for (int s = start; s < end; s++) {
+            if(((cnt >> s) & 1) == 1) {
+               ans += (1<<(s-start));
+            }
+        }
+        return ans;
+    }
+
+    public void setCount(int ct, int pc) {
+        int start = --ct * 10;
+        int end = start+10;
+        for (int i = start; i < end; i++) {
+            if( ((pc>>(i-start))&1) == 1) {
+                cnt |= (1<<i);
+            } else {
+                cnt &= ~(1<<i);
+            }
+        }
+    }
 }
