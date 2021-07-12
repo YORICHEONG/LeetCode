@@ -1,5 +1,4 @@
 package dailypunch;
-
 public class hIndex_20210711 {
     public int hIndex(int[] citations) {
         int n = citations.length;
