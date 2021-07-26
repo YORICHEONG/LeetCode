@@ -11,6 +11,7 @@ import java.util.*;
 public class CountSmaller {
 
     private int[] c;
+
     private int[] a;
 
     /**
