@@ -2,36 +2,44 @@ package top100;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- * @description: TODO
+ * @description:
  * @author YORICHEONG
  * @date 2021/8/2 9:40
  * @version 1.0
  */
 public class LengthOfLongestSubstring {
+    /**
+     * 方法的注释
+     * @param s
+     * @return
+     */
     public int lengthOfLongestSubstring(String s) {
-        if(s != null && s.length() == 0) {
-            return 0;
-        }
-        int maxLength = 0;
-        int[] indexChar = new int[26];
-        Arrays.fill(indexChar, 0);
-        for (int i = 0; i < s.length(); i++) {
-            for (int j = i; j < s.length(); j++) {
-                int currentIndex = s.charAt(j)-'a';
-                int currentLength = j-i+1;
-                if (indexChar[currentIndex] ==  1) {
-                    if( maxLength < currentLength) {
-                        maxLength = currentLength;
-                    }
-                    Arrays.fill(indexChar, 0);
-                    continue;
-                } else {
-                    indexChar[currentIndex] = 1;
-                }
+
+        // 创建要给哈希集合，也可以是一个数组
+        Set<Character> occ = new HashSet<>();
+        int n = s.length();
+
+        // 右指针，初始值为-1，相当于我们在字符串的左边界的左侧，还没有开始移动
+        int rk = -1;
+
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            if(i != 0) {
+                // 左指针向右移动一格，移除一个字符
+                occ.remove(s.charAt(i - 1));
+
             }
+            while(rk + 1 < n && !occ.contains(s.charAt(rk + 1))) {
+                occ.add(s.charAt(rk + 1));
+                ++ rk;
+            }
+            ans = Math.max(ans, rk - i + 1);
         }
-        return maxLength;
+        return  ans;
+
     }
 }
