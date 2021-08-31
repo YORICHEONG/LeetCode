@@ -1,20 +1,8 @@
 package top100;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.*;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+
+
 
 /**
  * @description:
@@ -23,138 +11,98 @@ import java.util.stream.Collectors;
  * @version 1.0
  */
 public class GenerateParenthesis {
+
+    List<String> list = new ArrayList<>();
     /**
      * @param: n
-     * @description :
+     * @description : TODD
      * @return : java.util.List<java.lang.String>
      * @author : YORICHEONG
-     * @date : 2021/8/19
+     * @date : 2021/8/26
      */
     public List<String> generateParenthesis(int n) {
-        return null;
-    }
-
-    public static void main(String[] args) {
-        List<String> list = new ArrayList<>();
-        list.add("23");
-        list.add("234");
-        list.add("234253");
-        list.add("78");
-        list.add("56");
-        Map<String, Double> map = list.stream().collect(Collectors.toMap(Function.identity(), s -> (double)(int)System.currentTimeMillis()));
-        List<Map<String, Double>> result = splitMap(map, 1);
-        for (Map<String, Double> m: result) {
-            System.out.println(m.toString());
+        if(n <= 0) {
+            return list;
         }
-//        List<Map<String, Double>> result = splitAppIdArray(,3, (int)System.currentTimeMillis() / 1000);
-//        for (Map<String, Double> map: result) {
-//            System.out.println(map.size());
-//            System.out.println(map.toString());
-//            System.out.println("==================");
-//        }
-    }
-
-
-    public static List<Map<String, Double>> splitMap(Map<String, Double> chunkMap, int chunkNum) {
-        if (chunkMap == null || chunkMap.size() == 0 || chunkNum <= 0) {
-            return null;
-        }
-        int i = 1;
-        List<Map<String, Double>> total = new ArrayList<>();
-        Map<String, Double> tem = new HashMap<>();
-        for(Map.Entry<String, Double> entry : chunkMap.entrySet()) {
-            tem.put(entry.getKey(), entry.getValue());
-            if(i == chunkNum) {
-                total.add(tem);
-                tem = new HashMap<>();
-                i = 0;
-            }
-            i++;
-        }
-        if (!(tem == null || tem.isEmpty())) {
-            total.add(tem);
-        }
-
-        return total;
-    }
-
-}
-
-class Task implements Runnable {
-
-    private String requestUrl;
-    private int index;
-
-    public Task(String url, int index) {
-        this.requestUrl = url;
-        this.index = index;
-    }
-
-    public void init() throws IOException {
-        HttpURLConnection connection = null;
-        InputStream is = null;
-        BufferedReader br = null;
-        try {
-            // 创建远程url连接对象
-            URL url = new URL(requestUrl);
-            // 通过远程url连接对象打开一个连接，强转成httpURLConnection类
-            connection = (HttpURLConnection) url.openConnection();
-            // 设置连接方式：get
-            connection.setRequestMethod("GET");
-            // 设置连接主机服务器的超时时间：15000毫秒
-            connection.setConnectTimeout(15000);
-            // 设置读取远程返回的数据时间：60000毫秒
-            connection.setReadTimeout(60000);
-            // 发送请求
-            connection.connect();
-            // 通过connection连接，获取输入流
-            if (connection.getResponseCode() == 200) {
-                System.out.println("Thread " + index + "连接成功");
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            // 关闭资源
-            if (null != br) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (null != is) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            connection.disconnect();// 关闭远程连接
-        }
+        // 调用私有的方法
+        getParenthesis("", n, n);
+        return list;
     }
 
     /**
-     * When an object implementing interface <code>Runnable</code> is used
-     * to create a thread, starting the thread causes the object's
-     * <code>run</code> method to be called in that separately executing
-     * thread.
-     * <p>
-     * The general contract of the method <code>run</code> is that it may
-     * take any action whatsoever.
-     *
-     * @see Thread#run()
+     * @param: str
+     * @param: left
+     * @param: right
+     * @description : 递归的方法
+     * @return : void
+     * @author : YORICHEONG
+     * @date : 2021/8/26
      */
-    @Override
-    public void run() {
-        try {
-
-            init();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void getParenthesis(String str, int left, int right) {
+        // 达到了最大的长度时候就将这个组添加进去
+        if(left == 0 && right == 0) {
+            System.out.println(str);
+            list.add(str);
+            return;
+        }
+        if(left == right) {
+            // 左右括号相等的时候先用左括号
+            getParenthesis(str + "(", left -1, right);
+            // 如果左边的括号数量小于右边的时候
+        } else if(left < right) {
+            // 如果左边可以添加的还有，就先添加左边的
+            if(left > 0) {
+                getParenthesis(str + "(", left - 1, right);
+            }
+            // 否则右边添加括号
+            getParenthesis(str + ")", left, right - 1);
         }
     }
+
+    //============ Method 2===============================================================
+
+    /**
+     * @param: n
+     * @description : 使用回溯的方法来进行遍历
+     * @return : java.util.List<java.lang.String>
+     * @author : YORICHEONG
+     * @date : 2021/8/26
+     */
+    public List<String> generateParenthesis2(int n) {
+        List<String> ans = new ArrayList<>();
+        backTrace(ans, new StringBuilder(), 0, 0, n);
+
+        return ans;
+    }
+    
+    /**
+     * @param: ans
+     * @param: builder
+     * @param: left
+     * @param: right
+     * @param: max
+     * @description : 回溯
+     * @return : void
+     * @author : YORICHEONG
+     * @date : 2021/8/26
+     */
+    public void backTrace(List<String> ans, StringBuilder builder, int left, int right, int max) {
+        int multiple = 2;
+        if(builder.length() == max * multiple) {
+            ans.add(builder.toString());
+            return;
+        }
+        // 然后进行测试
+        if(left < max) {
+            builder.append('(');
+            backTrace(ans, builder, left + 1, right, max);
+            builder.deleteCharAt(builder.length() - 1);
+        }
+        if(right < left) {
+            builder.append(')');
+            backTrace(ans, builder, left, right + 1, max);
+            builder.deleteCharAt(builder.length() - 1);
+        }
+    }
+
 }
