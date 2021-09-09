@@ -1,6 +1,10 @@
 package top100;
 
+import jdk.nashorn.internal.ir.Symbol;
+
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @description: 以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi] 。
@@ -9,6 +13,18 @@ import java.util.*;
  * @version 1.0
  */
 public class Merge {
+    private static Pattern pattern = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+
+    private static  String regExp = "^[1]([3-9])[0-9]{9}$";
+
+    public static void main(String[] args) {
+        String number = "17187673954";
+        if(number.matches(regExp)) {
+            System.out.println("Mathcer");
+        } else {
+            System.out.println("no mathcher");
+        }
+    }
 
     /**
      * @param: intervals
