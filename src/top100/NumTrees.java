@@ -7,10 +7,10 @@ package top100;
  * @version 1.0
  */
 public class NumTrees {
-    
+
     /**
      * @param: n
-     * @description :
+     * @description : 动态规划的方法
      * @return : int
      * @author : YORICHEONG
      * @date : 2021/9/9
