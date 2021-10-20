@@ -15,11 +15,11 @@ import java.util.Stack;
  **/
 public class DecodeString {
 
-    private final static char OPEN = '[';
+    private final static String OPEN = "[";
 
     private final static char CLOSE = ']';
 
-    private StringBuilder builder;
+    private static StringBuilder builder = new StringBuilder();
    /**
     * @Description:
     * @Author: YORICHEONG
@@ -28,31 +28,39 @@ public class DecodeString {
     public String decodeString(String s) {
         Stack<Integer> numberStack = new Stack<>();
         Stack<String> chartStack = new Stack<>();
-        for(char c : s.toCharArray()) {
+        for (char c : s.toCharArray()) {
             if(Character.isDigit(c)) {
                 numberStack.push(c - '0');
-            } else if(Character.isLetter(c)) {
-                chartStack.push(String.valueOf(c));
-            } else if(c == OPEN) {
-                chartStack.push(String.valueOf(OPEN));
             } else if(c == CLOSE) {
-                builder = new StringBuilder();
-                Integer count  = numberStack.pop();
-                StringBuilder tempBuilder = new StringBuilder();
-                while(!chartStack.peek().equals( String.valueOf(OPEN))) {
-                    tempBuilder.append(chartStack.pop());
+                // do the builder
+                int stringNumber = numberStack.pop();
+                while(true) {
+                    String currentString = chartStack.pop();
+                    if(currentString.equals(OPEN)) {
+                        break;
+                    }
+                    builder.append(currentString);
                 }
-                chartStack.pop();
-                for (int i = 0; i < count; i++) {
-                    builder.append(tempBuilder.toString());
+                String stringContext = builder.toString();
+                builder.delete(0, builder.length());
+                for (int i = 0; i < stringNumber; i++) {
+                    builder.append(stringContext);
                 }
-                chartStack.push(builder.toString());
+                String resultContext = builder.toString();
+                builder.delete(0, builder.length());
+                chartStack.push(resultContext);
+            } else {
+                chartStack.push(String.valueOf(c));
             }
         }
-        return builder.toString();
+        while(!chartStack.isEmpty()) {
+            builder.append(chartStack.pop());
+        }
+        return builder.reverse().toString();
     }
 
     public static void main(String[] args) {
-        System.out.println(new DecodeString().decodeString("3[a]2[bc]"));
+        // "accaccacc"
+        System.out.println(new DecodeString().decodeString("3[a2[c]]"));
     }
 }
