@@ -17,7 +17,7 @@ package top100;
  **/
 public class DailyTemperatures {
     /**
-     * @Description:
+     * @Description: 根据从后往前的方法来进行查找
      * @Author: YORICHEONG 
      * @Date: 11:14 2021/10/26
      **/
@@ -26,31 +26,17 @@ public class DailyTemperatures {
         if(length == 1) {
             return new int[]{0};
         }
-        int preValue = temperatures[length - 1];
-        int preIndex = length - 1;
-        int maxValue = preValue;
         int[] result = new int[length];
         result[length - 1] = 0;
         for (int i = length - 2; i >= 0; i--) {
-            if(temperatures[i] >= preValue) {
-                if(result[preIndex] == 0) {
+            for (int j = i + 1; j < length; j += result[j]) {
+                if(temperatures[i] < temperatures[j]) {
+                    result[i] = j - i;
+                    break;
+                } else if(result[j] == 0) {
                     result[i] = 0;
-                } else {
-                    // 进行一个循环然后找到合适的
-                    if(temperatures[i] > maxValue) {
-                        result[i] = 0
-                    } else{
-                        for(int x = i + 1; x < length; x++) {
-                            if(temperatures[x] > temperatures[i]) {
-                                result[i] = x - i;
-                                break;
-                            }
-                        }
-                    }
+                    break;
                 }
-                
-            } else {
-                result[i] = maxIndex - i;
             }
         }
         return result;
