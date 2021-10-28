@@ -1,5 +1,7 @@
 package top100;
 
+import java.util.Arrays;
+
 /**
  * @Description 给你一个用字符数组 tasks 表示的 CPU 需要执行的任务列表。
  * 其中每个字母表示一种不同种类的任务。任务可以以任意顺序执行，
@@ -17,7 +19,22 @@ public class LeastInterval {
      * @Date: 10:40 2021/10/25
      **/
     public int leastInterval(char[] tasks, int n) {
-        
-        return -1;
+        int[] bucket = new int[26];
+        for (int i = 0; i < tasks.length; i++) {
+            bucket[tasks[i] - 'A']++;
+        }
+        Arrays.sort(bucket);
+        int maxTimes = bucket[25];
+        int maxCount = 1;
+        for (int i = 25; i >= 1; i--) {
+            if(bucket[i] == bucket[i - 1]) {
+                maxCount++;
+            } else {
+                break;
+            }
+        }
+
+        int res = (maxTimes - 1) * (n + 1) + maxCount;
+        return Math.max(res, tasks.length);
     }
 }
