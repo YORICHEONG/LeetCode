@@ -1,5 +1,7 @@
 package byday.code_2021_10_29;
 
+import app.base.MoveZeroArray;
+
 /**
  * @Description 地上有一个m行n列的方格，从坐标 [0, 0] 到坐标 [m-1,n-1] 。
  * 一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），
@@ -13,62 +15,31 @@ package byday.code_2021_10_29;
  */
 public class MovingCount {
 
-    private int count = 0;
+    public static void main(String[] args) {
+        System.out.println(new MovingCount().movingCount(2,3,1));
+    }
+
     /**
-     *
+     * 使用的是广度搜索方法来进行测试
      * @param m
      * @param n
      * @param k
      * @return
      */
     public int movingCount(int m, int n, int k) {
-        return 0;
+        boolean[][] isVisited = new boolean[m][n];
+        return dfs(0, 0, k, m, n, isVisited);
     }
 
-    private void dfs(int i, int j, int k, int m, int n) {
-        if(checkIndex(i, j, m, n)) {
-            if(isEnable(i, j, k)) {
-                count ++;
-            }
-
-
+    private int dfs(int i, int j, int k, int m, int n,boolean[][] isVisited) {
+        if( i >= m || j >= n || i < 0 || j < 0 || isVisited[i][j] || (i % 10 + i / 10 + j % 10 + j / 10) > k) {
+            return 0;
         } else {
-            return;
+            isVisited[i][j] = true;
+            return dfs(i + 1, j, k, m, n, isVisited) + dfs(i - 1, j, k, m, n, isVisited) +
+                    dfs(i, j - 1, k, m, n, isVisited) + dfs(i, j + 1, k, m, n, isVisited) + 1;
         }
+
     }
 
-    private boolean checkIndex(int i, int j, int m, int n) {
-        return i >= 0 && i < m && j >= 0 && j < n;
-    }
-
-    private boolean isEnable(int i, int j, int k) {
-        int sumI = getSum(i);
-        int sumJ = getSum(j);
-        int allSum = sumI + sumJ;
-
-        return allSum > k ? false : true;
-    }
-
-
-    /**
-     *
-     * @param number
-     * @return
-     */
-    private int getSum(int number) {
-        int nextValue = 0;
-        int sum = 0;
-        int multiplyValue = 0;
-
-        while(number > 10) {
-            nextValue = number / 10;
-            multiplyValue = number % 10;
-
-            sum += multiplyValue;
-            number = nextValue;
-        }
-        sum += number;
-
-        return sum;
-    }
 }
