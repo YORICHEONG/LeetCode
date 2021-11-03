@@ -16,7 +16,12 @@ public class MaxProfit {
      * @return
      */
     public int maxProfit(int[] prices) {
+        int sumProfit = 0;
+        int max = 0;
+        for (int i = 1; i < prices.length; i++) {
+            sumProfit += Math.max(0, prices[i] - prices[i - 1]);
+        }
 
-        return -1;
+        return sumProfit;
     }
 }
