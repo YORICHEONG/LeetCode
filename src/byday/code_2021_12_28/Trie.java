@@ -17,17 +17,15 @@ import java.util.Map;
  **/
 public class Trie {
 
-    public static void main(String[] args) {
-        Trie trie = new Trie();
-        trie.insert("apple");
-        System.out.println(trie.search("apple"));
-        System.out.println(trie.startsWith("app"));
+    /**
+     * 使用一个Map来进行初始存储，每个字母对应一个Trie
+     */
+    public Map<Character, Trie> container;
 
-    }
-
-    private Map<Character, Trie> container;
-
-    private boolean isEnd;
+    /**
+     * 判断当前这个位置是否是一个单词的结尾
+     */
+    public boolean isEnd;
 
     public Trie() {
         container = new HashMap<>(26);
@@ -35,7 +33,7 @@ public class Trie {
     }
     
     /**
-     * @Description: 
+     * @Description: 插入字符串到前缀树中，并在单词结束的位置打上结尾的标签
      * @Author: YORICHEONG 
      * @Date: 11:00 2021/12/29
      **/
@@ -53,7 +51,7 @@ public class Trie {
     }
     
     /**
-     * @Description:
+     * @Description: 查找单词，判断查找的单词是否在当前的字典树中存在
      * @Author: YORICHEONG 
      * @Date: 11:00 2021/12/29
      **/
@@ -70,7 +68,7 @@ public class Trie {
     }
     
     /**
-     * @Description:
+     * @Description: 是否有以指定前缀存在的字符串
      * @Author: YORICHEONG 
      * @Date: 11:00 2021/12/29
      **/
