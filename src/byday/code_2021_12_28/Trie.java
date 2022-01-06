@@ -27,6 +27,8 @@ public class Trie {
      */
     public boolean isEnd;
 
+    public String value;
+
     public Trie() {
         container = new HashMap<>(26);
         isEnd = false;
@@ -48,6 +50,7 @@ public class Trie {
             }
         }
         currTrie.isEnd = true;
+        currTrie.value = word;
     }
     
     /**
