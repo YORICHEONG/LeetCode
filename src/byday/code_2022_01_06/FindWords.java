@@ -16,7 +16,7 @@ public class FindWords {
     /**
      * @Description:
      * @Author: YORICHEONG 
-     * @Date: 15:29 2022/1/6
+     * @Date: 12:52 2022/1/6
      **/
     public List<String> findWords(char[][] board, String[] words) {
         // 首先是构建字典树
