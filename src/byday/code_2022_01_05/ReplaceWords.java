@@ -2,9 +2,7 @@ package byday.code_2022_01_05;
 
 import byday.code_2021_12_28.Trie;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Description
@@ -45,6 +43,72 @@ public class ReplaceWords {
         }
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
+    }
+
+    class Solution1 {
+        /**
+         * @Description: 使用hash前缀的方法来进行判断
+         * @Author: YORICHEONG 
+         * @Date: 13:51 2022/1/13
+         **/
+        public String replaceWords(List<String> dictionary, String sentence) {
+            Set<String> rootSet = new HashSet<>(dictionary);
+            StringBuilder sb = new StringBuilder();
+            // 然后将sentence来进行分割，然后就可以切换成为一段段的
+            for(String s : sentence.split("\\s+")) {
+                String prefix = "";
+                for (int i = 1; i <= s.length(); i++) {
+                    prefix = s.substring(0, i);
+                    if(rootSet.contains(prefix)){
+                        break;
+                    }
+                }
+                if(sb.length() > 0) {
+                    sb.append(" ");
+                }
+                sb.append(prefix);
+            }
+            return sb.toString();
+        }
+    }
+
+    class Solution2 {
+        public String replaceWords(List<String> roots, String sentence) {
+            TrieNode trie = new TrieNode();
+            for (String root: roots) {
+                TrieNode cur = trie;
+                for (char letter: root.toCharArray()) {
+                    if (cur.children[letter - 'a'] == null)
+                        cur.children[letter - 'a'] = new TrieNode();
+                    cur = cur.children[letter - 'a'];
+                }
+                cur.word = root;
+            }
+
+            StringBuilder ans = new StringBuilder();
+
+            for (String word: sentence.split("\\s+")) {
+                if (ans.length() > 0)
+                    ans.append(" ");
+
+                TrieNode cur = trie;
+                for (char letter: word.toCharArray()) {
+                    if (cur.children[letter - 'a'] == null || cur.word != null)
+                        break;
+                    cur = cur.children[letter - 'a'];
+                }
+                ans.append(cur.word != null ? cur.word : word);
+            }
+            return ans.toString();
+        }
+    }
+
+    class TrieNode {
+        TrieNode[] children;
+        String word;
+        TrieNode() {
+            children = new TrieNode[26];
+        }
     }
 }
 
