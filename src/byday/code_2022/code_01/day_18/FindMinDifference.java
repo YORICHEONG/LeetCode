@@ -99,7 +99,6 @@ public class FindMinDifference {
         System.out.println(areaType);
 
         System.out.println(zero == 5);
-        HashMap
         /*
         List<String> removeList;
         int j = list.size() / 3;
