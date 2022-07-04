@@ -4,6 +4,9 @@ package test;/**
  * @create 2021-07-12 10:25
  */
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @description: TODO
  * @author YORICHEONG
@@ -33,11 +36,20 @@ public class ByteTest {
         }
     }
     public static void main(String[] args) {
-        int big= 5;
-        int medium = 1;
-        int small = 0;
+        Map<String, Object> test = new HashMap<>();
+        byte type = 1;
+        Long id = 23423l;
+        test.put("gameType", type);
+        test.put("id", id);
+        byte gameType = (Byte)test.get("gameType");
+        Long coinActivityId = (Long) test.get("id");
 
-        System.out.println("big>>0 " + ((big >> 0) & (1)));
-        new ByteTest(big,medium,small);
+        System.out.println(gameType);
+        System.out.println(coinActivityId);
+
+
+        Integer i = 1;
+        byte x = 1;
+        System.out.println(i == x);
     }
 }

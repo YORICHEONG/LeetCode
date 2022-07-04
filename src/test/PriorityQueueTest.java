@@ -13,37 +13,7 @@ import java.util.*;
  **/
 public class PriorityQueueTest {
     public static void main(String[] args) {
-        // 这个用来存储500游戏ID最终要存储到要删除表中的数据
-        List<VersionInfo> result = new ArrayList<>();
-        // 假设这个是更加500个游戏ID从版本表中的查找的记录
-        List<VersionInfo> searchInfo = new ArrayList<>();
-        // 建立这个Map，用来将查询的到的数据根据AppId进行分组
-        Map<Integer, List<VersionInfo>> versionMap = new HashMap<>();
-
-        // 遍历查询到的版本信息集合，然后使用Map来进行分组
-        for (VersionInfo versionInfo:
-             searchInfo) {
-            List<VersionInfo> versionInfoList = versionMap.getOrDefault(new ArrayList<VersionInfo>().add(versionInfo), versionMap.get(versionInfo.getAppId()));
-            versionInfoList.add(versionInfo);
-            versionMap.put(versionInfo.getAppId(), versionInfoList);
-        }
-
-        // 遍历按游戏ID来进行划分的Map
-        for(Map.Entry<Integer, List<VersionInfo>> entry : versionMap.entrySet()) {
-            List<VersionInfo> versionInfoList = entry.getValue();
-            // 如果这个游戏一年前下载的游戏版本小于两个就直接跳过
-            if (versionInfoList.size() <= 2) {
-                continue;
-            }
-            // 将这个游戏的历史下架版本添加到一个优先队列中
-            PriorityQueue<VersionInfo> priorityQueue = new PriorityQueue<>(versionInfoList);
-            // 将这个优先队列中的历史下架版本取出，只留两个，取出来版本存入到一个list中
-            while (priorityQueue.size() > 2) {
-                // 可以在这里添加最终要删除的时间
-                result.add(priorityQueue.poll());
-            }
-            priorityQueue = null;
-        }
-        // 最后将 result 这个list中的信息加入到要删除表中
+        String jsonStr = "{\"jsonStr\":[\"{\\\"basicVo\\\":{\\\"id\\\":377,\\\"name\\\":\\\"ymm-webview-08\\\",\\\"startTime\\\":1655308800,\\\"endTime\\\":1656518399,\\\"showStartTime\\\":1655308800,\\\"showEndTime\\\":1656604799,\\\"channels\\\":\\\"102002\\\",\\\"ruleContent\\\":\\\"<p>\\\\n\\\\t<span style=\\\\\\\"background-color:#E53333;color:#E56600;\\\\\\\"><strong><u><em>URLSSINGALSNDKFNASLDFNKLASNF;LANSDLFN;AKLSDFLK</em></u></strong></span>\\\\n</p>\\\\n<p>\\\\n\\\\t<span style=\\\\\\\"background-color:#E53333;color:#E56600;\\\\\\\"><strong><u><em>ASDFASDFASD</em></u></strong></span>\\\\n</p>\\\\n<p>\\\\n\\\\t<span style=\\\\\\\"background-color:#E53333;color:#E56600;\\\\\\\"><strong><u><em>ASDFKLDSAF</em></u></strong></span>\\\\n</p>\\\\n<p>\\\\n\\\\t<br />\\\\n</p>\\\\n<p>\\\\n\\\\t<span style=\\\\\\\"background-color:#E53333;color:#E56600;\\\\\\\"><strong><u><em>ASDFASD</em></u></strong></span>\\\\n</p>\\\\n<p>\\\\n\\\\t<span style=\\\\\\\"background-color:#E53333;color:#E56600;\\\\\\\"><strong><u><em>DSAFSADF</em></u></strong></span>\\\\n</p>\\\\n<div id=\\\\\\\"gtx-trans\\\\\\\" style=\\\\\\\"position:absolute;left:-107px;top:-16px;\\\\\\\">\\\\n\\\\t<div class=\\\\\\\"gtx-trans-icon\\\\\\\">\\\\n\\\\t</div>\\\\n</div>\\\",\\\"addCoinIds\\\":\\\"\\\",\\\"purpose\\\":10,\\\"extraDataVo\\\":{\\\"payTitle\\\":\\\"ymm-08支付成功后立返￥喵币\\\"}},\\\"zippoVo\\\":{\\\"id\\\":204,\\\"activityId\\\":377,\\\"type\\\":\\\"PAY_STEP_PARTITION\\\",\\\"zippoContentVo\\\":{\\\"proportionData\\\":{\\\"10-20\\\":10,\\\"20-30\\\":15,\\\"30-40\\\":20},\\\"cycleType\\\":\\\"1\\\",\\\"cycleDayTimes\\\":\\\"\\\",\\\"payMin\\\":null,\\\"payMax\\\":null,\\\"userCoinMax\\\":10000,\\\"userUsedMax\\\":null,\\\"gameType\\\":2}},\\\"gameFilePath\\\":\\\"\\\",\\\"gameClear\\\":false}\"]}";
+        String result = StringEscapeUtils.
     }
 }

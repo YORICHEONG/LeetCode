@@ -1,6 +1,15 @@
 package middle.dynamic;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 2021-06-24 10:28:20
@@ -36,5 +45,48 @@ public class LengthOfLIS {
 
     }
 
-    
+    public static void main(String[] args) throws ParseException {
+        Map<String, String> params = new HashMap<>();
+        params.put("sdkuid", "1234545");
+        params.put("status", "0");
+        params.put("timestamp", String.valueOf(System.currentTimeMillis()/1000));
+        System.out.println(params.get("timestamp"));
+        StringBuilder sb = new StringBuilder();
+        for(Map.Entry<String, String> entry : params.entrySet()) {
+            sb.append(entry.getValue());
+        }
+        try {
+            Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+            SecretKeySpec secret_key = new SecretKeySpec("v2d3e6h32i2r62xlw82vf334ua18x6m8".getBytes(), "HmacSHA256");
+            sha256_HMAC.init(secret_key);
+            String hash = byteArrayToHexString(sha256_HMAC.doFinal(sb.toString().getBytes()));
+            System.out.println(hash);
+        } catch (NoSuchAlgorithmException | InvalidKeyException e) {
+        }
+    }
+
+    public static String byteArrayToHexString(byte[] b) {
+        StringBuffer resultSb = new StringBuffer();
+
+        for(int i = 0; i < b.length; ++i) {
+            resultSb.append(byteToHexString(b[i], true));
+        }
+
+        return resultSb.toString();
+    }
+    private static final String[] hexDigits = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
+
+    private static String byteToHexString(byte b, boolean bigEnding) {
+        int n = b;
+        if (b < 0) {
+            n = 256 + b;
+        }
+
+        int d1 = n / 16;
+        int d2 = n % 16;
+        return bigEnding ? hexDigits[d1] + hexDigits[d2] : hexDigits[d2] + hexDigits[d1];
+    }
 }
+
+
+
