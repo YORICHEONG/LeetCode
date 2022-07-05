@@ -22,6 +22,13 @@ public class CoinChange {
         return res == Integer.MAX_VALUE?-1:res;
     }
 
+    /**
+     *
+     * @param coins
+     * @param amount
+     * @param index
+     * @param count
+     */
     private void minCoin(int[] coins, int amount, int index, int count) {
         if(amount == 0) {
             res = Math.min(res,count);
